@@ -3,6 +3,12 @@
 #include<set>
 #include<string>
 
+void AddSynonyms(std:: map<std:: string, std:: set<std:: string>>& synonyms,
+		const std:: string& first_word, const std:: string& second_word);
+size_t GetSynonymCount(std:: map<std:: string, std:: set<std:: string>>& synonyms,
+		const std:: string& first_word);
+bool AreSynonyms(std:: map<std:: string, std:: set<std:: string>>& synonyms,
+		const std:: string& first_word, const std:: string& second_word);
 
 void AddSynonyms(std:: map<std:: string, std:: set<std:: string>>& synonyms,
 		const std:: string& first_word, const std:: string& second_word){

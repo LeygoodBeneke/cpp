@@ -2,6 +2,11 @@
 #include "test_runner.h"
 #include "synonyms.h"
 
+void TestAddSynonyms();
+void TestAreSynonyms();
+void TestGetSynonymCount();
+void TestAll();
+
 void TestAddSynonyms(){
 	{
 		std:: map<std:: string, std:: set<std:: string>> empty;

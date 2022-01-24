@@ -5,6 +5,28 @@
 #include<set>
 #include<sstream>
 
+// Interface
+//
+template<class T, class U>
+void AssertEqual(const T& t, const U& u, const std:: string hint);
+void Assert(bool b, const std:: string& hint);
+template<typename T>
+std:: ostream& operator<< (std:: ostream& os, const std:: set<T>& s);
+template<typename K, typename V>
+std:: ostream& operator<< (std:: ostream& os, const std:: map<K, V>& m);
+
+class TestRunner{
+public:
+	template<class TestFunc>
+	void RunTest(TestFunc func, const std:: string& test_name);
+	~TestRunner();
+
+private:
+	int fail_count = 0;
+};
+
+//
+
 template <class T, class U>
 void AssertEqual(const T& t, const U& u, const std:: string hint){
 	if (t != u){
@@ -42,26 +64,20 @@ std:: ostream& operator<< (std:: ostream& os, const std:: map<K, V>& m){
 	return os << "}";
 }
 
-class TestRunner{
-public:
-	template<class TestFunc>
-	void RunTest(TestFunc func, const std:: string& test_name){
-		try{
-			func();
-			std:: cerr << test_name << ": OK" << '\n';
-		}catch(std:: runtime_error& e){
-			++fail_count;
-			std:: cerr << test_name << " fail: " << e.what() << '\n';
-		}
+template<class TestFunc>
+void TestRunner:: RunTest(TestFunc func, const std:: string& test_name){
+	try{
+		func();
+		std:: cerr << test_name << ": OK" << '\n';
+	}catch(std:: runtime_error& e){
+		++fail_count;
+		std:: cerr << test_name << " fail: " << e.what() << '\n';
 	}
+}
 
-	~TestRunner(){
-		if (fail_count){
-			std:: cerr << fail_count << " tests failed. Terminate";
-			exit(1);
-		}
+TestRunner:: ~TestRunner(){
+	if (fail_count){
+		std:: cerr << fail_count << " tests failed. Terminate";
+		exit(1);
 	}
-private:
-	int fail_count = 0;
-};
-
+}
