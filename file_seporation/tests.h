@@ -1,3 +1,5 @@
+#include "test_runner.h"
+
 void TestAddSynonyms(){
 	{
 		std:: map<std:: string, std:: set<std:: string>> empty;

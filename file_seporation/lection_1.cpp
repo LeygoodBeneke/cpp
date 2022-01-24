@@ -1,10 +1,3 @@
-#include<iostream>
-#include<map>
-#include<set>
-#include<exception>
-#include<sstream>
-
-#include "test_runner.h"
 #include "synonyms.h"
 #include "tests.h"
 
