@@ -1,5 +1,7 @@
 #include<iostream>
+#include<memory>
 #include<string>
+#include<vector>
 
 struct Fruit{
 public:
@@ -25,12 +27,13 @@ struct Orange : public Fruit{
 
 struct Animal{
 public:
-	Animal(const std:: string& t = "animal")
-		: type(t){}
+	Animal(const std:: string& t = "animal") : type(t){}
 
 	void Eat(Fruit& f){
 		std:: cout << type << " eats " << f.getType() << ".\n";
 	}
+
+	virtual void Sound() const = 0;
 
 	std:: string getType(){
 		return type;
@@ -43,17 +46,45 @@ protected:
 class Cat : public Animal{
 public:
 	Cat() : Animal("cat") {}
+
+	void Sound() const override{
+		std:: cout << "Meow\n";
+	}
 };
 
 class Dog : public Animal{
 public:
 	Dog() : Animal("dog") {}
+
+	void Sound() const override{
+		std:: cout << "Wow!\n";
+	}
 };
 
+class Parrot : public Animal{
+private:
+	std:: string name;
+public:
+	Parrot(const std:: string& n) : Animal("Parrot"), name(n) {}
+
+	void Sound() const override{
+		std:: cout << name << " is nice!\n";
+	}
+};
+
+void MakeSound(const Animal& a){
+	a.Sound();
+}
 
 int main(){
-	Cat c;
-	Apple a;
-	c.Eat(a);
+	std:: vector<std:: shared_ptr<Animal>> animals = {
+		std:: make_shared<Cat>(),
+		std:: make_shared<Dog>(),
+		std:: make_shared<Parrot>("Kesha"),
+	};
+	for (auto a : animals){
+		MakeSound(*a);
+	}
+	system("pause");
 	return 0;
 }
