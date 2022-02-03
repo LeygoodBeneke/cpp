@@ -31,12 +31,12 @@ public:
 };
 
 void TestTable() {
-  Table<int> t(1, 1);
-  t[0][0] = 42;
-  t.Resize(3, 4);
+    Table<int> t(1, 1);
+    t[0][0] = 42;
+    t.Resize(3, 4);
 }
 
 int main() {
-  TestTable();
-  return 0;
+    TestTable();
+    return 0;
 }
