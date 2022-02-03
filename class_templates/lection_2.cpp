@@ -14,7 +14,6 @@ struct IteratorRange {
     }
 };
 
-
 template<typename T>
 IteratorRange<typename std:: vector<T> :: iterator> Head(std:: vector<T>& v, size_t top){
     return {
