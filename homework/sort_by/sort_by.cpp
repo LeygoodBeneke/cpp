@@ -9,13 +9,12 @@
 using namespace std;
 
 #define RUN_TEST(obj, func) obj.RunTest(func, #func);
+#define ASSERT_EQUAL(a, b) AssertEqual(a, b, "");
 
 #define SORT_BY(field)                              \
     [](const AirlineTicket& t1, AirlineTicket& t2){ \
         return t1.field < t2.field;                 \
     }
-
-#define ASSERT_EQUAL(a, b) AssertEqual(a, b, "");
 
 bool operator < (const Date& lhs, const Date& rhs) {
   return tie(lhs.year, lhs.month, lhs.day) < tie(rhs.year, rhs.month, rhs.day);
