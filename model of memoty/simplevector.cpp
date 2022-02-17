@@ -11,7 +11,11 @@ public:
     ~SimpleVector(){
         delete[] data;
     }
-    
+
+    T& operator[](size_t index){
+        return *(data + index);
+    }
+
 private:
     T* data;
 };
